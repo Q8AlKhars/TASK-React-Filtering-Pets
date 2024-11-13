@@ -7,7 +7,7 @@ function PetsList() {
   const [type, setType] = useState("");
 
   const filterByName = pets.filter((pet) =>
-    pet.name.toLowerCase().includes(searchTextgit)
+    pet.name.toLowerCase().includes(searchText)
   );
   const filterByType = filterByName.filter((pet) => pet.type.includes(type));
 
