@@ -5,13 +5,22 @@ import PetItem from "./PetItem";
 function PetsList() {
   const [searchText, setSearchText] = useState("");
   const [type, setType] = useState("");
+  const [available, setAvailable] = useState(pets);
 
-  const filterByName = pets.filter((pet) =>
+  const handleAdopt = (petId) => {
+    alert("Are you sure?");
+    const petList = available.filter((pet) => pet.id !== petId);
+    setAvailable(petList);
+  };
+
+  const filterByName = available.filter((pet) =>
     pet.name.toLowerCase().includes(searchText)
   );
   const filterByType = filterByName.filter((pet) => pet.type.includes(type));
 
-  const petList = filterByType.map((pet) => <PetItem pet={pet} key={pet.id} />);
+  const petList = filterByType.map((pet) => (
+    <PetItem adoptFunction={handleAdopt} pet={pet} key={pet.id} />
+  ));
 
   return (
     <section id="doctors" className="doctor-section pt-140">
